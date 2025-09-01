@@ -110,19 +110,27 @@ export function Projects() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "Production": return "bg-green-100 text-green-800 border-green-200";
-      case "Live": return "bg-blue-100 text-blue-800 border-blue-200";
-      case "Development": return "bg-yellow-100 text-yellow-800 border-yellow-200";
-      default: return "bg-gray-100 text-gray-800 border-gray-200";
+      case "Production":
+        return "bg-green-100 text-green-800 border-green-200 dark:bg-green-900 dark:text-green-100 dark:border-green-800";
+      case "Live":
+        return "bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:border-blue-800";
+      case "Development":
+        return "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900 dark:text-yellow-100 dark:border-yellow-800";
+      default:
+        return "bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700";
     }
   };
 
   const getComplexityColor = (complexity: string) => {
     switch (complexity) {
-      case "Enterprise": return "bg-purple-100 text-purple-800 border-purple-200";
-      case "Expert": return "bg-red-100 text-red-800 border-red-200";
-      case "Advanced": return "bg-orange-100 text-orange-800 border-orange-200";
-      default: return "bg-blue-100 text-blue-800 border-blue-200";
+      case "Enterprise":
+        return "bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-900 dark:text-purple-100 dark:border-purple-800";
+      case "Expert":
+        return "bg-red-100 text-red-800 border-red-200 dark:bg-red-900 dark:text-red-100 dark:border-red-800";
+      case "Advanced":
+        return "bg-orange-100 text-orange-800 border-orange-200 dark:bg-orange-900 dark:text-orange-100 dark:border-orange-800";
+      default:
+        return "bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:border-blue-800";
     }
   };
 
@@ -145,7 +153,7 @@ export function Projects() {
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
             Portfolio Showcase
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-foreground/85 dark:text-foreground/85 max-w-3xl mx-auto leading-relaxed">
             Cutting-edge projects spanning network infrastructure, blockchain innovation, and scalable web applications
           </p>
         </motion.div>
@@ -165,7 +173,7 @@ export function Projects() {
               className={`group relative px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
                 selectedCategory === category.key 
                   ? 'text-white shadow-xl' 
-                  : 'text-muted-foreground hover:text-foreground bg-card border border-border hover:border-primary/30'
+                  : 'text-foreground/80 dark:text-foreground/80 hover:text-foreground bg-card dark:bg-card/60 border border-border hover:border-primary/30'
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -237,7 +245,7 @@ export function Projects() {
                           <h3 className="text-2xl lg:text-3xl font-bold mb-3 text-foreground">
                             {project.title}
                           </h3>
-                          <p className="text-muted-foreground leading-relaxed text-lg">
+                          <p className="text-foreground/85 dark:text-foreground/85 leading-relaxed text-lg">
                             {project.description}
                           </p>
                         </div>
@@ -354,7 +362,7 @@ export function Projects() {
                         <h3 className="text-xl font-bold mb-2 line-clamp-2">
                           {project.title}
                         </h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+                        <p className="text-foreground/85 dark:text-foreground/85 text-sm leading-relaxed line-clamp-3">
                           {project.description}
                         </p>
                       </div>
