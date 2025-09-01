@@ -172,22 +172,20 @@ export function Projects() {
               onClick={() => setSelectedCategory(category.key)}
               className={`group relative px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
                 selectedCategory === category.key 
-                  ? 'text-white shadow-xl' 
+                  ? 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl border border-primary/70' 
                   : 'text-foreground/80 dark:text-foreground/80 hover:text-foreground bg-card dark:bg-card/60 border border-border hover:border-primary/30'
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {selectedCategory === category.key && (
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 rounded-xl"
-                  layoutId="activeProjectCategory"
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                />
-              )}
               <span className="relative z-10 flex items-center gap-2">
                 {category.label}
-                <Badge variant="secondary" className="bg-primary-foreground/20 text-current border-0">
+                <Badge
+                  variant="secondary"
+                  className={selectedCategory === category.key
+                    ? 'bg-primary-foreground/30 text-primary-foreground border-0'
+                    : 'bg-primary-foreground/20 text-current border-0'}
+                >
                   {category.count}
                 </Badge>
               </span>
