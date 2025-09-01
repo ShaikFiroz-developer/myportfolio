@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { ExternalLink, Github, Play, Star, GitBranch, Users } from "lucide-react";
+import { ExternalLink, Github, Play, GitBranch } from "lucide-react";
 import { motion } from "motion/react";
 import reactLogo from "../assets/react.svg";
 

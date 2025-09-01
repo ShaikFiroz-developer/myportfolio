@@ -8,7 +8,6 @@ import {
   Shield,
   Zap,
   Settings,
-  Database,
   Globe,
   ChevronRight
 } from "lucide-react";
@@ -270,17 +269,13 @@ export function Skills() {
         {/* Overall Stats */}
         <motion.div 
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
         >
           {[
             { label: "Technologies", value: "15", icon: <Settings className="h-5 w-5" /> },
             { label: "Academic Projects", value: "8+", icon: <Globe className="h-5 w-5" /> },
             { label: "Experience", value: "1 Year", icon: <Zap className="h-5 w-5" /> },
             { label: "freelanced projects", value: "6", icon: <Globe className="h-5 w-5" /> },
-          ].map((stat, index) => (
+          ].map((stat) => (
             <motion.div
               key={stat.label}
               whileHover={{ scale: 1.05, y: -5 }}

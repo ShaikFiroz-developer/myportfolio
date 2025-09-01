@@ -1,5 +1,4 @@
 import { Card, CardContent } from "./ui/card";
-import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Award, Target, TrendingUp, Zap, Download, ExternalLink } from "lucide-react";
 import { motion } from "motion/react";
