@@ -15,11 +15,8 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleNavClick = () => {
+    // Close mobile menu after navigation
     setIsMenuOpen(false);
   };
 
@@ -73,22 +70,23 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
             {navItems.map((item, index) => (
-              <motion.button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors group rounded-lg"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 + 0.3 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="relative z-10">{item.label}</span>
-                <motion.div 
-                  className="absolute inset-0 bg-primary/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
-                  layoutId="desktopHover"
-                />
-              </motion.button>
+            <motion.a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={handleNavClick}
+              className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors group rounded-lg"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 + 0.3 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="relative z-10">{item.label}</span>
+              <motion.div 
+                className="absolute inset-0 bg-primary/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                layoutId="desktopHover"
+              />
+            </motion.a>
             ))}
             
             <motion.div
@@ -97,11 +95,11 @@ export function Header() {
               transition={{ delay: 0.6 }}
             >
               <Button 
-                onClick={() => scrollToSection('contact')}
-                size="sm"
-                className="ml-4 bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Let's Connect
+              asChild
+              size="sm"
+              className="ml-4 bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <a href="#contact" onClick={handleNavClick}>Let's Connect</a>
               </Button>
             </motion.div>
           </nav>
@@ -141,20 +139,21 @@ export function Header() {
         >
           <div className="pt-4 pb-6 space-y-2">
             {navItems.map((item, index) => (
-              <motion.button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="block w-full text-left px-4 py-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-primary/10 transition-all duration-200"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ 
-                  opacity: isMenuOpen ? 1 : 0,
-                  x: isMenuOpen ? 0 : -20
-                }}
-                transition={{ delay: index * 0.1 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {item.label}
-              </motion.button>
+            <motion.a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={handleNavClick}
+              className="block w-full text-left px-4 py-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-primary/10 transition-all duration-200"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ 
+                opacity: isMenuOpen ? 1 : 0,
+                x: isMenuOpen ? 0 : -20
+              }}
+              transition={{ delay: index * 0.1 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {item.label}
+            </motion.a>
             ))}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -164,13 +163,9 @@ export function Header() {
               }}
               transition={{ delay: navItems.length * 0.1 }}
             >
-              <Button 
-                onClick={() => scrollToSection('contact')}
-                size="sm"
-                className="w-full mt-4 bg-primary hover:bg-primary/90"
-              >
-                Let's Connect
-              </Button>
+            <Button size="sm" className="w-full mt-4 bg-primary hover:bg-primary/90" asChild>
+              <a href="#contact" onClick={handleNavClick}>Let's Connect</a>
+            </Button>
             </motion.div>
           </div>
         </motion.nav>

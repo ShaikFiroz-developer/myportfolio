@@ -87,7 +87,7 @@ export function Skills() {
   const currentCategory = skillCategories[selectedCategory as keyof typeof skillCategories];
 
   return (
-    <section id="skills" className="py-24 relative overflow-hidden">
+    <section id="skills" className="py-24 relative overflow-hidden scroll-mt-24">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/20 to-background">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(120,119,198,0.1),transparent)]"></div>

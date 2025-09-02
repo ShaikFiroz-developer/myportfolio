@@ -135,7 +135,7 @@ export function Projects() {
   };
 
   return (
-    <section id="projects" className="py-24 bg-gradient-to-br from-background via-muted/20 to-background relative overflow-hidden">
+    <section id="projects" className="py-24 scroll-mt-24 bg-gradient-to-br from-background via-muted/20 to-background relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 opacity-40">
         <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-primary/20 rounded-full blur-3xl"></div>

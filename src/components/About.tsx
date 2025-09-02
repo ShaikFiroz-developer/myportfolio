@@ -52,7 +52,7 @@ export function About() {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-muted/30 via-background to-muted/20 relative overflow-hidden">
+    <section id="about" className="py-24 scroll-mt-24 bg-gradient-to-br from-muted/30 via-background to-muted/20 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-primary/20 rounded-full blur-3xl"></div>

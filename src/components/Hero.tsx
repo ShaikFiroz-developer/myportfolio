@@ -1,6 +1,5 @@
 import { Button } from "./ui/button";
 import {
-  ChevronDown,
   Github,
   Linkedin,
   Mail,
@@ -21,13 +20,13 @@ export function Hero() {
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5">
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))]"></div>
       </div>
 
       {/* Floating Orbs */}
       <motion.div
-        className="absolute top-1/4 left-1/4 w-32 h-32 bg-primary/10 rounded-full blur-xl"
+        className="absolute top-1/4 left-1/4 w-32 h-32 bg-primary/10 rounded-full blur-xl pointer-events-none"
         animate={{
           x: [0, 50, 0],
           y: [0, -30, 0],
@@ -40,7 +39,7 @@ export function Hero() {
         }}
       />
       <motion.div
-        className="absolute bottom-1/3 right-1/3 w-24 h-24 bg-accent/20 rounded-full blur-xl"
+        className="absolute bottom-1/3 right-1/3 w-24 h-24 bg-accent/20 rounded-full blur-xl pointer-events-none"
         animate={{
           x: [0, -40, 0],
           y: [0, 40, 0],
@@ -310,13 +309,13 @@ export function Hero() {
 
       {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5 }}
       >
-        <motion.button
-          onClick={() => scrollToSection("experience")}
+        <motion.a
+          href="#about"
           className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors group"
           animate={{ y: [0, 8, 0] }}
           transition={{
@@ -325,11 +324,15 @@ export function Hero() {
             ease: "easeInOut",
           }}
         >
-          <span className="text-sm font-medium">
-            Discover More
-          </span>
-          <ChevronDown className="h-5 w-5 group-hover:scale-110 transition-transform" />
-        </motion.button>
+          <div className="w-6 h-10 rounded-full border border-muted-foreground/30 flex items-start justify-center p-1">
+            <motion.div 
+              className="w-1.5 h-1.5 bg-primary rounded-full"
+              animate={{ y: [0, 18, 0], opacity: [1, 0.5, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </div>
+          <span className="text-xs font-medium">Discover More</span>
+        </motion.a>
       </motion.div>
     </section>
   );

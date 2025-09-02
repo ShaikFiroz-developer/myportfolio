@@ -2,9 +2,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Building, Calendar, MapPin, Award, TrendingUp, Zap } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
+import { useState } from "react";
 
 export function Experience() {
+  const [activeSecondary, setActiveSecondary] = useState("gfg");
   const primaryExperience = {
     company: "HCL Technologies",
     position: "Network Engineer",
@@ -30,6 +32,33 @@ export function Experience() {
     ]
   };
 
+  const secondaryExperiences = [
+    {
+      id: "gfg",
+      company: "GeeksforGeeks",
+      position: "Technical Content Writer (Freelance)",
+      duration: "Jul 2024 – Jul 2025",
+      location: "Remote",
+      type: "Freelance",
+      highlights: [
+        "Wrote technical articles and tutorials on networking and CS fundamentals",
+        "Focused on clear, structured explanations and reproducible examples",
+      ],
+    },
+    {
+      id: "fiverr",
+      company: "Fiverr",
+      position: "Freelance Network/Technical Professional",
+      duration: "Jan 2024 – Ongoing",
+      location: "Remote",
+      type: "Freelance",
+      highlights: [
+        "Delivered client gigs covering configuration, troubleshooting, and documentation",
+        "Maintained high client satisfaction with timely delivery and clear communication",
+      ],
+    },
+  ];
+
   const skillsProgression = [
     { skill: "Network Architecture", level: 95, growth: "+25%" },
     { skill: "Protocol Design", level: 92, growth: "+30%" },
@@ -38,7 +67,7 @@ export function Experience() {
   ];
 
   return (
-    <section id="experience" className="py-24 bg-gradient-to-br from-background via-muted/30 to-background relative overflow-hidden">
+    <section id="experience" className="py-24 scroll-mt-24 bg-gradient-to-br from-background via-muted/30 to-background relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,theme(colors.primary)_0%,transparent_50%)]"></div>
@@ -222,6 +251,83 @@ export function Experience() {
               </div>
             </CardContent>
           </Card>
+        </motion.div>
+
+        {/* Secondary Experience (Freelance) - Button Carousel */}
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-2xl font-semibold">Contract & Freelance Work</h3>
+            <Badge variant="secondary" className="bg-blue-100 text-blue-800 border-blue-200">Freelance</Badge>
+          </div>
+
+          {/* Selector Buttons */}
+          <div className="flex gap-3 mb-6">
+            {secondaryExperiences.map((exp) => {
+              const isActive = activeSecondary === exp.id;
+              return (
+                <Button
+                  key={exp.id}
+                  variant={isActive ? "default" : "outline"}
+                  className={
+                    isActive
+                      ? "bg-primary text-primary-foreground"
+                      : "border-2 hover:border-primary/50"
+                  }
+                  onClick={() => setActiveSecondary(exp.id)}
+                  size="sm"
+                >
+                  {exp.company}
+                </Button>
+              );
+            })}
+          </div>
+
+          {/* Animated Card */}
+          <div className="relative min-h-[220px]">
+            <AnimatePresence mode="wait">
+              {secondaryExperiences
+                .filter((e) => e.id === activeSecondary)
+                .map((exp) => (
+                  <motion.div
+                    key={exp.id}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -30 }}
+                    transition={{ duration: 0.25 }}
+                    className="absolute inset-0"
+                  >
+                    <Card className="h-full border-2 border-primary/20 bg-card/70 backdrop-blur-sm shadow-xl">
+                      <CardHeader className="pb-3">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <CardTitle className="text-lg font-bold">{exp.position}</CardTitle>
+                            <p className="text-sm text-muted-foreground">{exp.company}</p>
+                          </div>
+                          <Badge variant="outline">{exp.type}</Badge>
+                        </div>
+                        <div className="mt-3 flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
+                          <span className="inline-flex items-center gap-1"><Calendar className="h-3.5 w-3.5" />{exp.duration}</span>
+                          <span className="inline-flex items-center gap-1"><MapPin className="h-3.5 w-3.5" />{exp.location}</span>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="pt-0">
+                        <ul className="list-disc pl-5 space-y-2 text-sm text-muted-foreground">
+                          {exp.highlights.map((h, i) => (
+                            <li key={i}>{h}</li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+            </AnimatePresence>
+          </div>
         </motion.div>
 
         {/* Call to Action */}
