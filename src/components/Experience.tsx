@@ -267,7 +267,7 @@ export function Experience() {
           </div>
 
           {/* Selector Buttons */}
-          <div className="flex gap-3 mb-6">
+          <div className="flex flex-wrap gap-3 mb-6">
             {secondaryExperiences.map((exp) => {
               const isActive = activeSecondary === exp.id;
               return (
@@ -289,7 +289,7 @@ export function Experience() {
           </div>
 
           {/* Animated Card */}
-          <div className="relative min-h-[220px]">
+          <div className="relative">
             <AnimatePresence mode="wait">
               {secondaryExperiences
                 .filter((e) => e.id === activeSecondary)
@@ -300,7 +300,7 @@ export function Experience() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -30 }}
                     transition={{ duration: 0.25 }}
-                    className="absolute inset-0"
+                    className="relative"
                   >
                     <Card className="h-full border-2 border-primary/20 bg-card/70 backdrop-blur-sm shadow-xl">
                       <CardHeader className="pb-3">
